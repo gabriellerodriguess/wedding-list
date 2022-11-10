@@ -8,6 +8,12 @@
     width: 176px;
 }
 
+.image_lg {
+    height: 173px;
+    width: 90%;
+    object-fit: cover;
+}
+
 .container_image {
     display: flex;
     flex-direction: column;

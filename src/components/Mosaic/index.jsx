@@ -1,16 +1,27 @@
 import Image from '../Image'
+import data from '../config/data'
+import { useNavigate } from 'react-router-dom'
 import './styles.css'
 
 export default function Mosaic() {
+    const dataItens = data
+    const navigate = useNavigate()
+
+    function handleClick(id) {
+        navigate(`category/${id}`)
+    }
+
     return (
         <section className='container_mosaic'>
             <div>
-                <Image alt="Quarto" id="1" urlImage="https://i.ibb.co/yfjq626/pexels-monica-silvestre-1034584-3.jpg" size="md" name="Quarto"/>
-                <Image alt="Banheiro" id="2" urlImage="https://i.ibb.co/VLc5jvL/pexels-max-vakhtbovych-6487948.jpg" size="sm" name="Banheiro"/>
+                {[dataItens[0],dataItens[1]].map((itm,idx) => {
+                    return <Image key={idx} alt={itm.name} dispatch={() => handleClick(itm.id)} urlImage={itm.urlImage} size={itm.id === '1' ? 'md' : 'sm'} name={itm.name} />
+                })}
             </div>
             <div>
-                <Image alt="Cozinha" id="3" urlImage="https://i.ibb.co/WKN95fc/cozinha-3.jpg" size="sm" name="Cozinha"/>
-                <Image alt="Sala" id="4" urlImage="https://i.ibb.co/8NbK6hX/pexels-charlotte-may-5824901.jpg" size="md" name="Sala"/>
+                {[dataItens[2],dataItens[3]].map((itm,idx) => {
+                    return <Image key={idx} alt={itm.name} dispatch={() => handleClick(itm.id)} urlImage={itm.urlImage} size={itm.id === '3' ? 'sm' : 'md'} name={itm.name} />
+                })}
             </div>
         </section>
     )

@@ -1,9 +1,17 @@
 import './App.css';
-import Routes from './components/routes';
+import Routes from './components/routes'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   return (
-    <Routes />
+    <>
+      <Header />
+      <div className='container_routes'>
+        <Routes />
+      </div>
+      <Footer />
+    </>
   )
 }
 
