@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes as RoutesPages, Route, BrowserRouter } from 'react-router-dom'
-import Home from '../pages/Home'
-import Category from '../pages/Category'
+import Home from '../../pages/Home'
+import Category from '../../pages/Category'
 
 export default function Routes() {
     return (

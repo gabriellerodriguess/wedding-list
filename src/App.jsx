@@ -1,5 +1,5 @@
 import './App.css';
-import Routes from './components/routes'
+import Routes from './components/Routes/routes'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
