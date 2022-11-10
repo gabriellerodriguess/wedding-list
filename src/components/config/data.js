@@ -7,7 +7,7 @@ const data = [
             {
                 id: '5',
                 name: 'cama',
-                active: false
+                active: true
             },
             {
                 id: '6',
@@ -57,7 +57,7 @@ const data = [
             {
                 id: '10',
                 name: 'escorredor de louças',
-                active: false
+                active: true
             },
             {
                 id: '11',
@@ -84,7 +84,7 @@ const data = [
             {
                 id: '14',
                 name: 'mesa de centro',
-                active: false
+                active: true
             }
         ]
     }        
