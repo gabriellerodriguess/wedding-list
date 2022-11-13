@@ -1,12 +1,12 @@
 import './styles.css'
 import React from "react";
-import SvgComponent from '../../assets/SvgComponent';
+import SvgComponentHeader from '../../assets/SvgComponentHeader';
 
 export default function Header() {
     return (
         <header>
             <div className='container_svg'>
-                <SvgComponent />
+                <SvgComponentHeader />
             </div>
             <div className='container_header'>
                 <div className='container_header-title'>

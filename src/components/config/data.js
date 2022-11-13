@@ -63,6 +63,21 @@ const data = [
                 id: '11',
                 name: 'travessa',
                 active: false
+            },
+            {
+                id: '15',
+                name: 'panela',
+                active: true
+            },
+            {
+                id: '16',
+                name: 'garrafa',
+                active: true
+            },
+            {
+                id: '17',
+                name: 'potes',
+                active: true
             }
         ]
     },

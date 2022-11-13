@@ -17,6 +17,10 @@
     border-radius: 10px;
 }
 
+.item-enabled {
+    pointer-events: none;
+}
+
 .item-enabled span {
     text-decoration: line-through;
 }
