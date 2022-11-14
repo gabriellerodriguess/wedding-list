@@ -1,26 +1,43 @@
 import Image from '../Image'
 import data from '../config/data'
+import { api } from '../../services/api'
 import { useNavigate } from 'react-router-dom'
 import './styles.css'
+import { useEffect, useState } from 'react'
 
 export default function Mosaic() {
     const dataItens = data
     const navigate = useNavigate()
+    const [items, setItems] = useState(null)
 
     function handleClick(id) {
         navigate(`category/${id}`)
     }
 
+    useEffect(() => {
+        async function getApiData() {
+            const responseAPI = await api.get('categories')
+            setItems(responseAPI.data)
+        }
+        getApiData()
+    }, [])
+
+    console.log(items)
+
     return (
         <section className='container_mosaic'>
             <div className='content_images'>
-                {[dataItens[0],dataItens[1]].map((itm,idx) => {
-                    return <Image key={idx} alt={itm.name} dispatch={() => handleClick(itm.id)} urlImage={itm.urlImage} size={itm.id === '1' ? 'md' : 'sm'} name={itm.name} />
+                {items && 
+                    [items[0],items[1]].map((itm,idx) => {
+                        console.log(idx)
+                        return <Image key={idx} alt={itm.name} dispatch={() => handleClick(itm.id)} urlImage={itm.urlImage} size={idx === 0 ? 'md' : 'sm'} name={itm.name} />
                 })}
             </div>
             <div className='content_images'>
-                {[dataItens[2],dataItens[3]].map((itm,idx) => {
-                    return <Image key={idx} alt={itm.name} dispatch={() => handleClick(itm.id)} urlImage={itm.urlImage} size={itm.id === '3' ? 'sm' : 'md'} name={itm.name} />
+                {items &&
+                    [items[2],items[3]].map((itm,idx) => {
+                        console.log(idx)
+                        return <Image key={idx} alt={itm.name} dispatch={() => handleClick(itm.id)} urlImage={itm.urlImage} size={idx === 0 ? 'sm' : 'md'} name={itm.name} />
                 })}
             </div>
         </section>

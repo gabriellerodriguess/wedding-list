@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { api } from '../../services/api'
 import Image from '../../components/Image'
 import data from '../../components/config/data'
 import List from '../../components/List'
@@ -10,14 +11,33 @@ import './styles.css'
 export default function Category() {
 
     const params = useParams()
-    const [category, setCategory] = useState(null)
+    const idCategory = params.id
+    // const [category, setCategory] = useState(null)
     const [showModal, setShowModal] = useState('')
     const [item, setItem] = useState(null)
+    const [category, setCategory] = useState(null)
+    const [items, setItems] = useState(null)
+    // useEffect(() => {
+    //     const response = data.find(element => element.id === params.id)
+    // }, [])
 
     useEffect(() => {
-        const response = data.find(element => element.id === params.id)
-        setCategory(response)
+        async function getCategory() {
+            const responseCategory = await api.get(`categories/${idCategory}`)
+            setCategory(responseCategory.data)
+        }
+        getCategory()
     }, [])
+
+    useEffect(() => {
+        async function getItems() {
+            const responseItems = await api.get(`items?categoryId=${idCategory}`)
+            setItems(responseItems.data)
+        }
+        getItems()
+    }, [])
+
+    console.log(items)
 
     function handleModal(item) {
         setShowModal(!showModal)
@@ -33,7 +53,7 @@ export default function Category() {
                 {category && (
                     <>
                         <Image urlImage={category.urlImage} name={category.name} alt={category.name} size='lg'/>
-                        <List category={category}  dispatch={(item) => handleModal(item)}/>
+                        <List items={items}  dispatch={(item) => handleModal(item)}/>
                     </>
                 ) }
                 {showModal &&
