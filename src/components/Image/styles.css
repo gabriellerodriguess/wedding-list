@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .container_image span {
@@ -29,4 +30,31 @@
 
 .container_image img {
     border-radius: 10px;
+}
+
+@media (min-width: 1024px) {
+    .content_images {
+        display: flex;
+        gap: 20px;
+    }
+
+    .container_image {
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    .image_md {
+        width: 250px;
+        height: auto;
+    }
+    
+    .image_sm {
+        width: 250px;
+        height: auto;
+    }
+    
+    .image_lg {
+        width: 650px;
+        height: 250px;
+    }
 }

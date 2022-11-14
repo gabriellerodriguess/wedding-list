@@ -1,10 +1,13 @@
 import Mosaic from "../../components/Mosaic";
+import Layout from "../../components/Layout";
 import React from "react";
 
 export default function Home() {
     return (
-        <div>
-            <Mosaic />
-        </div>
+        <Layout>
+            <div>
+                <Mosaic />
+            </div>
+        </Layout>
     )
 }

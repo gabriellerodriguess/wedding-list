@@ -1,16 +1,21 @@
+import React from "react"
+import { useNavigate } from "react-router-dom"
 import './styles.css'
-import React from "react";
-import SvgComponentHeader from '../../assets/SvgComponentHeader';
 
 export default function Header() {
+    const navigate = useNavigate()
+
+    function backToHome(){
+        navigate('/')
+    }
+
     return (
         <header>
-            <div className='container_svg'>
-                <SvgComponentHeader />
-            </div>
             <div className='container_header'>
                 <div className='container_header-title'>
-                    <h1>Lista</h1> <small>de presentes</small>
+                    <a href="" onClick={() => backToHome()}>
+                        <h1>Lista</h1> <small>de presentes</small>
+                    </a>
                 </div>
 
                 <div className='container_header-subtitle'>

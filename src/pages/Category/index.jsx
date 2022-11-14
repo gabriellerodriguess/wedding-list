@@ -4,6 +4,7 @@ import Image from '../../components/Image'
 import data from '../../components/config/data'
 import List from '../../components/List'
 import Modal from '../../components/Modal'
+import Layout from '../../components/Layout'
 import './styles.css'
 
 export default function Category() {
@@ -27,16 +28,18 @@ export default function Category() {
     }
 
     return (
-        <div>
-            {category && (
-                <>
-                    <Image urlImage={category.urlImage} name={category.name} alt={category.name} size='lg'/>
-                    <List category={category}  dispatch={(item) => handleModal(item)}/>
-                </>
-            ) }
-            {showModal &&
-                <Modal element={item}  dispatch={() => handleModal()}/>
-            }
-        </div>        
+        <Layout>
+            <div>
+                {category && (
+                    <>
+                        <Image urlImage={category.urlImage} name={category.name} alt={category.name} size='lg'/>
+                        <List category={category}  dispatch={(item) => handleModal(item)}/>
+                    </>
+                ) }
+                {showModal &&
+                    <Modal element={item}  dispatch={() => handleModal()}/>
+                }
+            </div>        
+        </Layout>
     )
 }

@@ -20,6 +20,10 @@ export default function Footer() {
                     <h2>{createDate()}</h2>
                 </div>
             </div>
+            <div className='container_info'>
+                <p>O evento será no dia <strong>11/12/2022</strong> às <strong>11:30h</strong></p>
+                <p>No endereço: <strong>Qr 402 Conjunto 1 Casa 12 | Samambaia Norte</strong></p>
+            </div>
         </footer>
     )
 }
