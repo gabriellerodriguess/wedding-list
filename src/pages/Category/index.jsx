@@ -5,6 +5,7 @@ import Image from '../../components/Image'
 import List from '../../components/List'
 import Modal from '../../components/Modal'
 import Layout from '../../components/Layout'
+import Loading from '../../components/Loading'
 import './styles.css'
 
 export default function Category() {
@@ -15,6 +16,7 @@ export default function Category() {
     const [item, setItem] = useState(null)
     const [category, setCategory] = useState(null)
     const [items, setItems] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function getCategory() {
@@ -25,10 +27,12 @@ export default function Category() {
     }, [])
     
     function getItems() {
+        setLoading(true)
         setItems(null)
         api.get(`items?categoryId=${idCategory}`).then(response => {
             console.log(response.data)
             setItems(response.data)
+            setLoading(false)
         })
     }
 
@@ -46,17 +50,20 @@ export default function Category() {
 
     return (
         <Layout>
-            <div>
-                {category && (
-                    <>
-                        <Image urlImage={category.urlImage} name={category.name} alt={category.name} size='lg'/>
-                        <List items={items}  dispatch={(item) => handleModal(item)}/>
-                    </>
-                ) }
-                {showModal &&
-                    <Modal item={item} onSuccess={() => getItems()} dispatch={() => handleModal()}/>
-                }
-            </div>        
+            {loading && <Loading type={'category'}/>}
+            {!loading &&    
+                <div>
+                    {category && (
+                        <>
+                            <Image urlImage={category.urlImage} name={category.name} alt={category.name} size='lg'/>
+                            <List items={items}  dispatch={(item) => handleModal(item)}/>
+                        </>
+                    ) }
+                    {showModal &&
+                        <Modal item={item} onSuccess={() => getItems()} dispatch={() => handleModal()}/>
+                    }
+                </div>        
+            }
         </Layout>
     )
 }

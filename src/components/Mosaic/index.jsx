@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import './styles.css'
 import { useEffect, useState } from 'react'
 
-export default function Mosaic() {
-    const dataItens = data
+export default function Mosaic(props) {
     const navigate = useNavigate()
     const [items, setItems] = useState(null)
 
@@ -14,11 +13,14 @@ export default function Mosaic() {
         navigate(`category/${id}`)
     }
 
+    function getApiData() {
+        api.get('categories').then(response => {
+            setItems(response.data)
+            props.handleLoading()
+        })
+    }
+
     useEffect(() => {
-        async function getApiData() {
-            const responseAPI = await api.get('categories')
-            setItems(responseAPI.data)
-        }
         getApiData()
     }, [])
 
