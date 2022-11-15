@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/wedding-list/static/css/main.91ab3e8d.css",
+    "main.js": "/wedding-list/static/js/main.0662801f.js",
+    "index.html": "/wedding-list/index.html",
+    "main.91ab3e8d.css.map": "/wedding-list/static/css/main.91ab3e8d.css.map",
+    "main.0662801f.js.map": "/wedding-list/static/js/main.0662801f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.91ab3e8d.css",
+    "static/js/main.0662801f.js"
+  ]
+}
