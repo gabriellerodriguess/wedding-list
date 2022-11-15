@@ -1,4 +1,3 @@
-import moment from 'moment'
 import './styles.css'
 
 export default function Footer() {
