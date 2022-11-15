@@ -1,22 +1,28 @@
 import {React, useState} from "react"
 import SvgComponentClose from '../../assets/SvgComponentClose'
+import { api } from '../../services/api'
 import './styles.css'
 
 export default function Modal(props) {
-
-    const [input, setInput] = useState('')
-    const [item, setItem] = useState('')
-
-    function getData() {
-        const data = [input, item]
-        if(input === '') {
+    const [guest, setGuest] = useState('')
+    
+    function updateData() {
+        if(guest === '') {
             alert('Insira um nome.')
             return
         }
-        console.log(data)
-        return data
-    }
 
+        api.put(`items/${props.item.id}`, {guest}).then(response => {
+
+            if(response.data.error) {
+                alert('Desculpe, tente novamente.')
+                return
+            } 
+            props.onSuccess()
+            props.dispatch()
+        })
+    }
+    
     return (
         <>
         <div className="modal_container">
@@ -27,25 +33,19 @@ export default function Modal(props) {
                 <h3>Você escolheu seu presente!</h3>
                 <div className="form_container">
                     <label className="text_default">Escreva seu nome:</label>
-                    <input type="text" value={input} onChange={
+                    <input type="text" value={guest} onChange={
                         (e) => {
-                        setInput(e.target.value) 
-                        setItem(props.element.name)
+                        setGuest(e.target.value) 
                         }}>
                     </input>
                 </div>
                 <div className="description">
                     <p className="text_default">O presente escolhido foi:</p>
-                    <span className="text_default">{props.element.name}</span>
+                    <span className="text_default">{props.item.name}</span>
                 </div>
                 <button type="submit" className="button_modal" onClick=
                     { () => {
-                        const isData = getData()
-
-                        if(isData) {
-                            props.dispatch()
-                        }
-                        
+                        updateData()   
                     }
                     }>Confirmar Presente</button>
             </div>

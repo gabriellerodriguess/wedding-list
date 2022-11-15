@@ -2,7 +2,6 @@ import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { api } from '../../services/api'
 import Image from '../../components/Image'
-import data from '../../components/config/data'
 import List from '../../components/List'
 import Modal from '../../components/Modal'
 import Layout from '../../components/Layout'
@@ -12,14 +11,10 @@ export default function Category() {
 
     const params = useParams()
     const idCategory = params.id
-    // const [category, setCategory] = useState(null)
     const [showModal, setShowModal] = useState('')
     const [item, setItem] = useState(null)
     const [category, setCategory] = useState(null)
     const [items, setItems] = useState(null)
-    // useEffect(() => {
-    //     const response = data.find(element => element.id === params.id)
-    // }, [])
 
     useEffect(() => {
         async function getCategory() {
@@ -28,22 +23,24 @@ export default function Category() {
         }
         getCategory()
     }, [])
+    
+    function getItems() {
+        setItems(null)
+        api.get(`items?categoryId=${idCategory}`).then(response => {
+            console.log(response.data)
+            setItems(response.data)
+        })
+    }
 
     useEffect(() => {
-        async function getItems() {
-            const responseItems = await api.get(`items?categoryId=${idCategory}`)
-            setItems(responseItems.data)
-        }
         getItems()
     }, [])
 
-    console.log(items)
-
     function handleModal(item) {
         setShowModal(!showModal)
-
+        
         if(item) {
-            setItem(item)
+           return setItem(item)
         }
     }
 
@@ -57,7 +54,7 @@ export default function Category() {
                     </>
                 ) }
                 {showModal &&
-                    <Modal element={item}  dispatch={() => handleModal()}/>
+                    <Modal item={item} onSuccess={() => getItems()} dispatch={() => handleModal()}/>
                 }
             </div>        
         </Layout>
