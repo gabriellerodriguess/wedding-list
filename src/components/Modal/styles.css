@@ -1,5 +1,5 @@
 .modal_container {
-    position: absolute;
+    position: fixed;
     background-color: rgba(30,30,30,60%);
     top: 0px;
     width: 100%;
@@ -9,14 +9,15 @@
 .modal {
     background-color: #fff;
     width: 80%;
-    margin: 30% auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     border-radius: 10px;
     height: 350px;
-    position: relative;
+    position: fixed;
+    top: 15%;
+    left: 6%;
 }
 
 .button_close {
